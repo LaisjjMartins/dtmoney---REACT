@@ -10,9 +10,10 @@ margin: 0 auto;  //centraliza
 padding: 2rem 1rem 12rem;  //1rem equivale ao tamanho do font-size do html é configurado lá no global
 display: flex;
 align-items: center;
-justify-content: space-between;
+justify-content: space-around;
 
 button{
+    width: 14rem;
     font-size: 1rem;
     color: #fff;
     background: var(--blue-light);

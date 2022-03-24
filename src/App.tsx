@@ -1,36 +1,27 @@
-
-import React, {useState} from "react";
-import { Dashboard } from "./components/Dashboard";
-import { Header } from "./components/Header";
-import { GlobalStyle } from "./styles/global";
-import Modal from 'react-modal';
-import { NewTransactionModal } from "./components/NewTransactionModal";
+import React from 'react';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { TransactionProvider } from "./hooks/TransactionsContext";
+import { Graficos } from './pages/Graficos';
+import { Home } from './pages/Home';
+import { GlobalStyle } from './styles/global';
 
-Modal.setAppElement('#root'); //Para acessibilidade, vai avisar do Modal
-export function App() {
-  const [transactionModalOpen, setTransactionModalOpen] = useState(false);
-  
-  function handleOpen(){
-  setTransactionModalOpen(true)
-  }
+export function App(){
 
-  function handleClose(){
-  setTransactionModalOpen(false)
-  }
+  return(
+    <>
+     <TransactionProvider>
+      <BrowserRouter>
 
+        <Routes>
+         
+          <Route  path="/" element={<Home />} />
+          <Route  path="/gastos" element={<Graficos/>} />
+        </Routes>
+      
+        </BrowserRouter>
+        </TransactionProvider>
+        <GlobalStyle/>
+        </>
+    );
 
-  return (
-
-    <TransactionProvider>
-      <Header props={handleOpen}  />
-      <Dashboard />
-      <NewTransactionModal 
-      propsIsOpen={transactionModalOpen} 
-      propsOnRequestClose={handleClose}/>
-      <GlobalStyle />
-    </TransactionProvider>
-  );
 }
-
-
